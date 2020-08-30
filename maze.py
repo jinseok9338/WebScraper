@@ -2,7 +2,7 @@ import random
 from tkinter import *
 
 
-class Cell:
+class Cell(Frame):
     """A cell in the maze.
 
     A maze "Cell" is a point in the grid which may be surrounded by walls to
@@ -27,8 +27,7 @@ class Cell:
         self.walls[wall] = False
         other.walls[Cell.wall_pairs[wall]] = False
 
-
-class Maze:
+class Maze(Frame):
     """A Maze, represented as a grid of cells."""
 
     def __init__(self, nx, ny, ix=0, iy=0):
@@ -40,6 +39,9 @@ class Maze:
         self.nx, self.ny = nx, ny
         self.ix, self.iy = ix, iy
         self.maze_map = [[Cell(x, y) for y in range(ny)] for x in range(nx)]
+        super(Maze, self).__init__()
+
+
 
     def cell_at(self, x, y):
         """Return the Cell object at (x,y)."""
@@ -105,9 +107,40 @@ class Maze:
             cell_stack.append(current_cell)
             current_cell = next_cell
             nv += 1
-        return self.maze_map
 
-    def draw_maze(self):
+    def draw_maze(self, xp, yp):
+        self.pack(fill=BOTH, expand=1)
+
+        cell_line_length = 100
+        canvas = Canvas(self)
+        cell_starting_points = [[(x, y) for x in range(xp, xp + cell_line_length * self.nx, cell_line_length)] for y in
+                                range(yp, yp + cell_line_length * self.ny, cell_line_length)]
+        #Something wrong with drawing line but it packs at least
+        for a in range(self.nx):
+            for b in range(self.ny):
+                if self.maze_map[a][b].walls["N"]:
+                    canvas.create_line(cell_starting_points[a][b][0], cell_starting_points[a][b][1],
+                                       cell_starting_points[a][b][0] + cell_line_length, cell_starting_points[a][b][1])
+
+                elif self.maze_map[a][b].walls["S"]:
+                    canvas.create_line(cell_starting_points[a][b][0], cell_starting_points[a][b][1] + cell_line_length,
+                                       cell_starting_points[a][b][0] + cell_line_length,
+                                       cell_starting_points[a][b][1] + cell_line_length)
+
+                elif self.maze_map[a][b].walls["E"]:
+                    canvas.create_line(cell_starting_points[a][b][0], cell_starting_points[a][b][1],
+                                       cell_starting_points[a][b][0], cell_starting_points[a][b][1] + cell_line_length)
+
+                elif self.maze_map[a][b].walls["W"]:
+                    canvas.create_line(cell_starting_points[a][b][0] + cell_line_length, cell_starting_points[a][b][1],
+                                       cell_starting_points[a][b][0] + cell_line_length,
+                                       cell_starting_points[a][b][1] + cell_line_length)
+
+        canvas.pack(fill=BOTH, expand=1)
+
+        return cell_starting_points
+
+
 
 
 

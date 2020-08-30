@@ -110,31 +110,40 @@ class Maze(Frame):
 
     def draw_maze(self, xp, yp):
         self.pack(fill=BOTH, expand=1)
+        line_width = 5
 
-        cell_line_length = 100
+        cell_line_length = 50
         canvas = Canvas(self)
-        cell_starting_points = [[(x, y) for x in range(xp, xp + cell_line_length * self.nx, cell_line_length)] for y in
-                                range(yp, yp + cell_line_length * self.ny, cell_line_length)]
+        cell_starting_points = [[(x, y) for y in range(yp, yp + cell_line_length * self.ny, cell_line_length)] for x in
+                                range(xp, xp + cell_line_length * self.ny, cell_line_length)]
+
+        print(cell_starting_points)
         #Something wrong with drawing line but it packs at least
+
         for a in range(self.nx):
             for b in range(self.ny):
                 if self.maze_map[a][b].walls["N"]:
+                    print(a,b,"North")
                     canvas.create_line(cell_starting_points[a][b][0], cell_starting_points[a][b][1],
                                        cell_starting_points[a][b][0] + cell_line_length, cell_starting_points[a][b][1])
 
-                elif self.maze_map[a][b].walls["S"]:
+                if self.maze_map[a][b].walls["S"]:
+                    print(a,b,"South")
                     canvas.create_line(cell_starting_points[a][b][0], cell_starting_points[a][b][1] + cell_line_length,
                                        cell_starting_points[a][b][0] + cell_line_length,
                                        cell_starting_points[a][b][1] + cell_line_length)
 
-                elif self.maze_map[a][b].walls["E"]:
-                    canvas.create_line(cell_starting_points[a][b][0], cell_starting_points[a][b][1],
-                                       cell_starting_points[a][b][0], cell_starting_points[a][b][1] + cell_line_length)
+                if self.maze_map[a][b].walls["E"]:
+                    print(a,b,"East")
+                    canvas.create_line(cell_starting_points[a][b][0]+ cell_line_length, cell_starting_points[a][b][1],
+                                       cell_starting_points[a][b][0]+ cell_line_length, cell_starting_points[a][b][1]+ cell_line_length )
 
-                elif self.maze_map[a][b].walls["W"]:
-                    canvas.create_line(cell_starting_points[a][b][0] + cell_line_length, cell_starting_points[a][b][1],
-                                       cell_starting_points[a][b][0] + cell_line_length,
+                if self.maze_map[a][b].walls["W"]:
+                    print(a,b,"West")
+                    canvas.create_line(cell_starting_points[a][b][0] , cell_starting_points[a][b][1],
+                                       cell_starting_points[a][b][0],
                                        cell_starting_points[a][b][1] + cell_line_length)
+
 
         canvas.pack(fill=BOTH, expand=1)
 

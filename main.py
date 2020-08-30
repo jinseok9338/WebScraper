@@ -7,11 +7,14 @@ canvas_height = 1000
 
 if __name__ == '__main__':
     # Maze dimensions (ncols, nrows)
-    nx, ny = 5, 5
+    nx, ny = 30, 30
     top = Tk()
     maze = Maze(nx, ny)
     maze.make_maze()
     maze.draw_maze(60,60)
+    for a in maze.maze_map:
+        for b in a:
+            print(b.walls)
     print(maze)
     #Canvas = Canvas(top, bg="skyblue", height=canvas_height, width=canvas_width)
     #Canvas.pack(fill="both", expand=True,pady=10)

@@ -1,24 +1,19 @@
-from tkinter import *
-from maze import Cell,Maze
+import tkinter as tk
+from ball import Ball
+from move import Move
+from maze import Maze, Cell
+root = tk.Tk()
+root.title("Test")
+root.geometry("1000x1000")
 
-canvas_width = 1000
-canvas_height = 1000
+canvas = tk.Canvas(root, width=1000, height=1000, borderwidth=0, highlightthickness=0, bg="white")
+canvas.grid()
 
 
-if __name__ == '__main__':
-    # Maze dimensions (ncols, nrows)
-    nx, ny = 30, 30
-    top = Tk()
-    maze = Maze(nx, ny)
-    maze.make_maze()
-    maze.draw_maze(60,60)
-    for a in maze.maze_map:
-        for b in a:
-            print(b.walls)
-    print(maze)
-    #Canvas = Canvas(top, bg="skyblue", height=canvas_height, width=canvas_width)
-    #Canvas.pack(fill="both", expand=True,pady=10)
-    #button = Button(top, overrelief="solid", width=10, repeatdelay=1000, repeatinterval=100)
-    #button.place(x=20,y=20)
-    top.mainloop()
+maze =Maze(35,35,canvas)
+maze.make_maze()
+maze.draw_maze(30,30)
+move= Move(canvas,root) #ball id = 2453
+
+root.mainloop()
 

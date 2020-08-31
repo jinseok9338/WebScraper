@@ -1,9 +1,9 @@
 class Ball:
     def __init__(self,canvas,**kw):
         self.canvas = canvas
-        self.radius = kw.get('radius',15)
-        self.pos_x = kw.get('pos_x',30)
-        self.pos_y = kw.get('pos_y',30)
+        self.radius = kw.get('radius',10)
+        self.pos_x = kw.get('pos_x',35)
+        self.pos_y = kw.get('pos_y',35)
         self.color = kw.get('color','blue')
         self.create()
 
@@ -17,7 +17,7 @@ class Ball:
 
     def create(self):
         coords = self.calculate_ball_pos()
-        self.ball = self.canvas.create_rectangle(coords[0],coords[1],coords[2],coords[3])
+        self.ball = self.canvas.create_oval(coords[0],coords[1],coords[2],coords[3])
         self.canvas.itemconfig(self.ball, fill=self.color)
 
 

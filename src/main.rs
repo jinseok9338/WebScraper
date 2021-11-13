@@ -9,6 +9,7 @@ use std::io::{self, Write};
 
 const MAX: u16 = 65535;
 
+#[allow(dead_code)]
 struct Arguments {
     flag:String,
     ipaddr:IpAddr,
@@ -69,6 +70,7 @@ fn scan(tx: Sender<u16>, start_port: u16, addr: IpAddr, num_threads: u16) {
         }
         port += num_threads;
     }
+     println!("done");
 }
 
 fn main() {
@@ -85,7 +87,7 @@ fn main() {
         }
     );
   let num_threads = arguments.threads;
-    let addr = arguments.ipaddr;
+    let _addr = arguments.ipaddr;
         let (tx, rx) = channel();
     for i in 0..num_threads {
         let tx = tx.clone();
@@ -100,7 +102,7 @@ fn main() {
     for p in rx {
         out.push(p);
     }    
-    
+
     println!("");
     out.sort();
     for v in out {

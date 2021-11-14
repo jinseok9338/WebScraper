@@ -1,11 +1,9 @@
 use piston_window::{rectangle, Context, G2d};
 use piston_window::types::Color;
 
-const BLOCK_SIZE: f64 = 25.0; // Scale to 25 pixels 
+const BLOCK_SIZE: f64 = 25.0;
 
 pub fn to_coord(game_coord: i32) -> f64 {
-    // Take a cordinate and spit out an scaled coord
-    // pub identifier allows us to export the func 
     (game_coord as f64) * BLOCK_SIZE
 }
 

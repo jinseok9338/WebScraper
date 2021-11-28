@@ -1807,6 +1807,7 @@ dependencies = [
  "chrono",
  "futures 0.3.18",
  "rocket",
+ "serde",
  "tokio 1.14.0",
  "yahoo_finance_api",
 ]

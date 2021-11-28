@@ -1,1 +1,0 @@
-cargo watch -c -x run --to run on watch 

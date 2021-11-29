@@ -8,10 +8,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
+  "proxy": "https://8000-magenta-ape-b2e7tsx7.ws-us17.gitpod.io",
   "devDependencies": {
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",

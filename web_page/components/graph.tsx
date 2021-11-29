@@ -11,19 +11,15 @@ const GraphForThings = ({ gridArea }: GraphForThingsProps) => {
   useEffect(() => {
     const getResult = async (url: string) => {
       try {
-        const res = await axios.get(url, {
-          headers: {
-            "Content-Type": "application/",
-            "Access-Control-Allow-Origin": "*",
-          },
-        });
+        axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
+        const res = await axios.get(url);
         console.log(res);
       } catch (e) {
         console.log(e);
       }
     };
 
-    getResult("https://8000-magenta-ape-b2e7tsx7.ws-us17.gitpod.io/");
+    getResult("https://8000-plum-dragonfly-ueseoihm.ws-us17.gitpod.io/");
   }, []);
 
   return (

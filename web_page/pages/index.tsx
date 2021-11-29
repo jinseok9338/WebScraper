@@ -1,12 +1,9 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-red-400 w-full h-100">
-      <h1 className="font-bold">Hello World</h1>
+    <div className="grid grid-cols-3 grid-rows-2 gap-4 w-screen h-screen">
+      <div className="h-full w-full col-span-2 bg-red-400">Hello World</div>
     </div>
   );
 };

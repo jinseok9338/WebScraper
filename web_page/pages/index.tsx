@@ -5,6 +5,7 @@ import GraphForThings from "../components/graph";
 const Home: NextPage = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-2 gap-4 w-screen h-screen">
+      {/* 3 x 2 columns */}
       <GraphForThings gridArea="col-span-2" />
     </div>
   );

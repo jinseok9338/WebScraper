@@ -19,7 +19,7 @@ const GraphForThings = ({ gridArea }: GraphForThingsProps) => {
       }
     };
 
-    getResult("https://8000-scarlet-hyena-qp7ga5mn.ws-us20.gitpod.io/");
+    getResult("https://8000-kumquat-louse-p3vnqp4o.ws-us20.gitpod.io/");
   }, []);
 
   return (

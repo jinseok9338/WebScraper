@@ -13,5 +13,5 @@ mod test;
 fn rocket() -> _ {
     rocket::build()
         .attach(CORS::CORS)
-        .mount("/", routes![functions::index])
+        .mount("/", routes![functions::index,functions::get_the_price_of_ticker])
 }

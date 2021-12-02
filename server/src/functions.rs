@@ -16,7 +16,7 @@ pub async fn index() -> Result<String, String>  {
     let formatted_quotes = format!("{:?}", quotes);
     match quotes{
     Ok(v) => {
-        let response = Response::build()
+        let response = Response::build() 
         .status(Status::Accepted)
         .header(ContentType::Plain)
         .raw_header("X-Teapot-Make", "Rocket")

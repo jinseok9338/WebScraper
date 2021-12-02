@@ -16,8 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Change the rust version to nightly
+        working-directory: ./server
+        run: rustup default nightly
+
       - name: Build
         working-directory: ./server
         run: cargo build --verbose
+
       - name: Run tests
+        working-directory: ./server
         run: cargo test --verbose

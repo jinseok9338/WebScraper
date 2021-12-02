@@ -24,7 +24,7 @@ pub async fn index() -> Result<String, String>  {
         .raw_header_adjoin("X-Teapot-Model", "Series 1")
         .sized_body(128,Cursor::new(format!("{:?}", v)))
         .finalize();
-         println!("Apple's quotes in January: {:?}", v);
+         println!("Apple's quotes in January: {:?}", v); 
 
         return Ok(format!("{:?}", v))
     },

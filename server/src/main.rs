@@ -9,7 +9,7 @@ mod functions;
 mod CORS;
 mod test;
 
-#[launch]
+#[launch] 
 fn rocket() -> _ {
     rocket::build()
         .attach(CORS::CORS)

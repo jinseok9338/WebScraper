@@ -30,7 +30,7 @@ pub async fn index() -> Result<String, String>  {
 
         return Ok(format!("{:?}", v))
     },
-    Err(_e) => Err((&"something Went Wrong").to_string())
+    Err(_e) => Err((&"something Went Wrong").to_string()) 
 }
 }
 

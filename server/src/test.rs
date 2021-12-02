@@ -12,7 +12,7 @@ mod tests {
         let mut response = client.get("/").dispatch();
         println!("This is test");
         assert_eq!(response.status(), Status::Ok);
-    assert_eq!(response.content_type(), Some(ContentType::Plain));
+    assert_eq!(response.content_type(), Some(ContentType::Plain)); 
 
     }
 }

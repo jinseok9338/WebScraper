@@ -1,15 +1,33 @@
-use std::io::Cursor;
-use rocket::{Response, http::{Status, ContentType, RawStr}};
+use rocket::http::Status;
+use rocket::serde::Serialize;
 use tokio::task::spawn_blocking;
+use yahoo::{YResponse, QuoteBlock};
 use yahoo_finance_api as yahoo;
 use chrono::{Utc,TimeZone};
-use std::time::{Duration, UNIX_EPOCH};
-use chrono::prelude::*;
+use serde::{Deserialize, Serializer};
+use rocket::serde::json::Json;
+ 
+
+
+
+#[derive(Deserialize,Debug,Serialize)]
+pub struct ResponseApi<'a> {
+  status: u16,
+ body:&'a QuoteBlock
+}
+
+#[derive(Deserialize,Debug,Serialize)]
+pub struct ErrorResponse {
+status: u16,
+message: String
+}
+
+
 
 
 
 #[get("/")]
-pub async fn index() -> Result<String, String>  {
+pub async fn index() -> Result<Json<ResponseApi> , Json<ErrorResponse> >  {
     let provider = yahoo::YahooConnector::new();
     let start = Utc.ymd(2020, 1, 1).and_hms_milli(0, 0, 0, 0);
     let end = Utc.ymd(2020, 1, 31).and_hms_milli(23, 59, 59, 999);
@@ -18,19 +36,24 @@ pub async fn index() -> Result<String, String>  {
     let quotes = resp.unwrap();
     match quotes{
     Ok(v) => {
-        // let response = Response::build() 
-        // .status(Status::Accepted)
-        // .header(ContentType::Plain)
-        // .raw_header("X-Teapot-Make", "Rocket")
-        // .raw_header("X-Teapot-Model", "Utopia")
-        // .raw_header_adjoin("X-Teapot-Model", "Series 1")
-        // .sized_body(128,Cursor::new(format!("{:?}", v)))
-        // .finalize();
-        //  println!("Apple's quotes in January: {:?}", v); 
 
-        return Ok(format!("{:?}", v))
-    },
-    Err(_e) => Err((&"something Went Wrong").to_string()) 
+      
+       
+        let indicator = &v.chart.result[1].indicators;
+ 
+   
+
+        return Ok(
+            Json(ResponseApi{
+                status: Status::Ok.code,
+             body:indicator
+            })     
+        )},
+    Err(_e) => Err(   
+        Json(ErrorResponse{
+        status: Status::NotFound.code,
+        message: format!("{:?}", _e)
+    }) ) 
 }
 }
 
@@ -50,7 +73,7 @@ pub async fn get_the_price_of_ticker(ticker:String) -> Result<String,String>{
         Ok(v)=> {
             println!("{}", format!("{:?}", &v));
             Ok(format!("{:?}", v))},
-        Err(e) =>Err((&"something Went Wrong").to_string())
+        Err(_e) =>Err((&"something Went Wrong").to_string())
     }
 
 }

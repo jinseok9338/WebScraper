@@ -10,11 +10,8 @@ futures ="*"
 tokio = {version = "1.0", features = ["full"]}
 yahoo_finance_api = {version = "0.2"}
 chrono = "*"
-rocket = "0.5.0-rc.1"
+rocket = {version ="0.5.0-rc.1", features=["json"]}
 serde = { version = "1.0", features = ["derive"] }
 rocket_cors = "0.5.2"
+serde_json = {version = "1.0"}
 
-[dependencies.rocket_contrib]
-version = "0.4.10"
-default-features = false
-features = ["json"]

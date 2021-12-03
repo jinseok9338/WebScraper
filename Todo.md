@@ -7,3 +7,7 @@ Features
 - [ ] Make the function that retrieve the price of the specific company of the period of time with set interval
 
 * [ ] Make better Error Message and send custom status message
+
+* [ ] the serialize for response is not implemented yet I can't implement the trait that is not owned by me....
+
+* [ ] the quote is private field

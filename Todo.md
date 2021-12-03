@@ -1,4 +1,4 @@
-Features
+Features and TODOS
 
 - [x] ~~_Make the function that retrieve the price of the specific company at that moment_~~ [2021-12-02]
 
@@ -11,3 +11,4 @@ Features
 * [ ] the serialize for response is not implemented yet I can't implement the trait that is not owned by me....
 
 * [ ] the quote is private field
+      rustup default nightly && rustup update

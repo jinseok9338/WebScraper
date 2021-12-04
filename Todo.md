@@ -4,6 +4,8 @@ Features and TODOS
 
 * [x] ~~_Making the test_~~ [2021-12-02]
 
+* [ ] Dockerize the application with volume attached to the container
+
 - [ ] Make the function that retrieve the price of the specific company of the period of time with set interval
 
 * [ ] Make better Error Message and send custom status message

@@ -15,3 +15,4 @@ fn rocket() -> _ {
         .attach(CORS::CORS)
         .mount("/", routes![functions::index,functions::get_the_price_of_ticker])
 }
+

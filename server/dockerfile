@@ -1,17 +1,12 @@
-FROM rust:1.43 as builder
+# 1. This tells docker to use the Rust official image
+FROM rust:1.49
 
-RUN USER=root cargo new --bin server
-WORKDIR /workspace/WebScraper/server
-COPY ./Cargo.toml ./Cargo.toml
+# 2. Copy the files in your machine to the Docker image
+COPY ./ ./
+
+# Build your program for release
 RUN rustup default nightly && rustup update
 RUN cargo build --release
-RUN rm src/*.rs
 
-ADD . ./
-
-RUN rm ./target/release/deps/server*
-RUN cargo build --release
-
-
-FROM debian:buster-slim
-ARG APP=/usr/src/app
+# Run the binary
+CMD ["./target/release/main"]

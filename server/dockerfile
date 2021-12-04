@@ -1,0 +1,17 @@
+FROM rust:1.43 as builder
+
+RUN USER=root cargo new --bin server
+WORKDIR /workspace/WebScraper/server
+COPY ./Cargo.toml ./Cargo.toml
+RUN rustup default nightly && rustup update
+RUN cargo build --release
+RUN rm src/*.rs
+
+ADD . ./
+
+RUN rm ./target/release/deps/server*
+RUN cargo build --release
+
+
+FROM debian:buster-slim
+ARG APP=/usr/src/app

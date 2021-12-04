@@ -45,17 +45,11 @@ pub async fn index() -> Result<Json<ResponseApi> , Json<ErrorResponse> >  {
         let split_string_2:Vec<&str> = split_string_1.split("], adjclose").collect();
         let split_string_3 = split_string_2[0];
 
-        println!("{}",&file_split_string_2);
+        println!("{}",&split_string_3);
         let json_split_string_2: serde_json::Value =
         serde_json::from_str(&split_string_3).expect("JSON was not well-formatted");
 
         println!("{:?}",json_split_string_2);
-
-
-
-        
- 
-   
 
         return Ok(
             Json(ResponseApi{
@@ -63,7 +57,7 @@ pub async fn index() -> Result<Json<ResponseApi> , Json<ErrorResponse> >  {
            
             })     
         )},
-    Err(_e) => Err(   
+    Err(_e) => Err(    
         Json(ErrorResponse{
         status: Status::NotFound.code,
         
